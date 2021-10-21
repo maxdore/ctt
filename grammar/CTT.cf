@@ -1,0 +1,8 @@
+Prog.   Program ::= Exp ;
+EAbs.   Exp ::= "\\" Id "." Exp ;  
+EApp.   Exp ::= Exp Exp1 ; 
+EVar.   Exp1 ::= Id ;
+
+coercions Exp 1 ;
+
+token Id (letter (letter | digit | '_')*) ; 

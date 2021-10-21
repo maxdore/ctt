@@ -1,0 +1,14 @@
+*~
+*.hi
+*.ho
+*.o
+grammar/*
+!grammar/CTT.cf
+.stack-work/
+ctt.cabal
+src/AbsCTT.hs
+src/ErrM.hs
+src/LexCTT.hs
+src/ParCTT.hs
+src/PrintCTT.hs
+src/SkelCTT.hs
