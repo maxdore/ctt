@@ -1,0 +1,5 @@
+module prelude where
+
+idfun : (A : Type) (a : A) -> A = \(A : Type) (a : A) -> a
+
+idfun (A : Type) (a : A) : A = a

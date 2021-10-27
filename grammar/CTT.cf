@@ -1,8 +1,36 @@
-Prog.   Program ::= Exp ;
-EAbs.   Exp ::= "\\" Id "." Exp ;  
-EApp.   Exp ::= Exp Exp1 ; 
-EVar.   Exp1 ::= Id ;
+entrypoints Module, Exp ;
 
-coercions Exp 1 ;
+comment "--" ;
+comment "{-" "-}" ;
 
-token Id (letter (letter | digit | '_')*) ; 
+layout "where", "split" ;
+
+Module.   Module ::= "module" AIdent "where" "{" [Decl] "}" ;
+
+
+DeclDef.             Decl ::= AIdent [Tele] ":" Exp "=" Exp ;
+DeclData.            Decl ::= "data" AIdent [Tele] "=" [Label] ;
+DeclSplit.           Decl ::= AIdent [Tele] ":" Exp "=" "split" "{" [Branch] "}" ;
+separator            Decl ";" ;
+
+Lam.          Exp  ::= "\\" [Tele] "->" Exp ;
+Fun.          Exp1 ::= Exp2 "->" Exp1 ;
+Pi.           Exp1 ::= [Tele] "->" Exp1 ;
+App.          Exp2 ::= Exp2 Exp3 ;
+Var.          Exp3 ::= AIdent ;
+Type.         Exp3 ::= "Type" ;
+coercions Exp 3 ;
+separator nonempty Exp "," ;
+
+
+OBranch.   Branch ::= AIdent [AIdent] "->" Exp ;
+separator Branch ";" ;
+
+OLabel.   Label ::= AIdent [Tele] ;
+separator Label "|" ;
+
+NTele.     Tele ::= "(" AIdent [AIdent] ":" Exp ")" ;
+terminator Tele "" ;
+
+position token AIdent (letter (letter | digit | '_')*) ;
+separator AIdent "" ;

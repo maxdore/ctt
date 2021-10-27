@@ -1,0 +1,9 @@
+module list where
+
+data list (A : Type) = nil
+                  | cons (a : A) (l : list A)
+
+
+head (A : Type) (a : A) : list A -> A = split
+  nil -> a
+  cons x xs -> x

@@ -1,0 +1,6 @@
+module bool where
+
+data bool = true | false
+
+not : bool -> bool = split
+  true -> false
